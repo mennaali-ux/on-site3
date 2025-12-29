@@ -1,49 +1,68 @@
-document.getElementById("contactform").addEventListener("submit", function (e) {
-  e.preventDefault();
-  var name = document.getElementById("name").value.trim();
-  var email = document.getElementById("email").value.trim();
-  var subject = document.getElementById("subject").value.trim();
-  var message = document.getElementById("message").value.trim();
-
-  var nameError = document.getElementById("name-error");
-  var emailError = document.getElementById("email-error");
-  var subjectError = document.getElementById("subject-error");
-  var messageError = document.getElementById("message-error");
-
-  nameError.textContent = "";
-  emailError.textContent = "";
-  subjectError.textContent = "";
-  messageError.textContent = "";
-  var valid = true;
-
-  if (name === "") {
-    nameError.textContent = "Please enter your name.";
-    valid = false;
-  } else if (name.length < 3 || name.length > 15) {
-    nameError.textContent = "Name must be 3-15 characters.";
-    valid = false;
-  }
-
-  if (email === "") {
-    emailError.textContent = "Please enter your email.";
-    valid = false;
-  }
-
-  if (subject !== "" && subject.length < 3) {
-    subjectError.textContent = "Subject must be at least 3 characters.";
-    valid = false;
-  }
-
-  if (message !== "" && message.length < 5) {
-    messageError.textContent = "Message must be at least 5 characters.";
-    valid = false;
-  }
-
-  if (valid) {
-    alert("Form submitted successfully!");
-    e.target.submit();
-  }
+document.getElementById("form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    // Get input values
+    var name = document.getElementById("name").value.trim();
+    var email = document.getElementById("email").value.trim();
+    var subject = document.getElementById("subject").value.trim();
+    var message = document.getElementById("message").value.trim();
+    // Get error elements
+    var nameError = document.getElementById("name-error");
+    var emailError = document.getElementById("email-error");
+    var subjectError = document.getElementById("subject-error");
+    var messageError = document.getElementById("message-error");
+    // Clear old messages
+    nameError.textContent = "";
+    emailError.textContent = "";
+    subjectError.textContent = "";
+    messageError.textContent = "";
+    var valid = true;
+    // Name validation
+    if (name === "") {
+        nameError.textContent = "Please enter your name.";
+        valid = false;
+    } else if (name.length < 3 || name.length > 15) {
+        nameError.textContent = "Name must be 3-15 characters.";
+        valid = false;
+    }
+    // Email validation
+    if (email === "") {
+        emailError.textContent = "Please enter your email.";
+        valid = false;
+    }
+    // Subject validation (optional)
+    if (subject !== "" && subject.length < 3) {
+        subjectError.textContent = "Subject must be at least 3 characters.";
+        valid = false;
+    }
+    // Message validation (optional)
+    if (message !== "" && message.length < 5) {
+        messageError.textContent = "Message must be at least 5 characters.";
+        valid = false;
+    }
+    // If all valid
+    if (valid) {
+        alert("Form submitted successfully!");
+        // e.target.submit(); // uncomment if you want real submission
+    }
 });
+
+
+
+
+
+const offers = document.querySelector('.offers-items');
+const prev = document.querySelector('.prev');
+const next = document.querySelector('.next');
+let index = 0;
+function slide(to) {
+const total = offers.children.length;
+index = (index + to + total) % total;
+offers.style.transform = `translateX(-${index * 100}%)`;
+}
+next.onclick = () => slide(1);
+prev.onclick = () => slide(-1);
+// Auto-slide every 5 seconds
+setInterval(() => slide(1), 5000);
 
 
 
@@ -104,21 +123,21 @@ BoxContainer.addEventListener("click", function (event) {
 });
 // End Gallery Section
 
-let next = document.querySelector(".next");
-let prev = document.querySelector(".prev");
-let offers = document.querySelector(".offers-items");
+// let next = document.querySelector(".next");
+// let prev = document.querySelector(".prev");
+// let offers = document.querySelector(".offers-items");
 
-let index = 0;
-function slide(to) {
-  let length = offers.children.length;
-  index = (index + to + length) % length;
-  offers.style.transform=`translateX(-${index*100}%)`;
-}
+// let index = 0;
+// function slide(to) {
+//   let length = offers.children.length;
+//   index = (index + to + length) % length;
+//   offers.style.transform=`translateX(-${index*100}%)`;
+// }
 
-next. onclick= ()=> slide(1);
-prev. onclick= ()=> slide(-1);
+// next. onclick= ()=> slide(1);
+// prev. onclick= ()=> slide(-1);
 
-setInterval(()=>slide(1) , 5000)
+// setInterval(()=>slide(1) , 5000)
 
 
 
